@@ -6,7 +6,7 @@
 # License: MIT
 # Pre-requisites: 
 # - Need to have downloaded the GSS data and saved it to inputs/data
-
+ 
 
 #### Workspace setup ####
 library(haven)
@@ -15,7 +15,7 @@ library(tidyverse)
 raw_data <- haven::read_dta("inputs/data/2021_stata/gss2021.dta")
 
 names(raw_data)
- 
+
 reduced_data <- 
   raw_data %>% 
   select(age,

@@ -34,7 +34,6 @@ There are three possible limitations and errors: Measurement error, non-response
 
 @citeR
 
-
 # Results and Discussion
 
 According to Figure 4, our survey reveals that out of the respondents that answered the question, the most number of respondents believe that the United States does not spend enough money on education. This is ironic since United States was ranked first for the best educational system in 2021. It is also noticeable that although many of the respondents have at least finished high school or four years of college. Most respondents also answered that they think their family's income as growing up was average. 
