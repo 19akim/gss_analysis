@@ -1,11 +1,11 @@
 ---
 title: "The Relationship between Education and Income in United States "
-subtitle: "My subtitle if needed"
+subtitle: ""
 author: 
   - Ayoon Kim
-thanks: "Code and data are available at: LINK."
-date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+thanks: "Code and data are available at: https://github.com/19akim/gss_analysis"
+date: "20 March, 2022"
+abstract: "Education is important to society since it creates more employment opportunities, which also means that it is directly associated with income. Although it is true that education affects income, family income also has an effect on education. We have decided to examine if family background affects education by collecting responses to demographic, behavioral, and attitudinal questions from families in the United States. These findings bear important implications for how to reduce the class differences in academic performance and promote educational equity in the United States."
 output:
   bookdown::pdf_document2
 toc: FALSE
@@ -13,94 +13,190 @@ bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
 library(tidyverse)
-library(palmerpenguins)
+library(tinytex)
+
+
 ```
 
 # Introduction
 
-You can and should cross-reference sections and sub-sections. For instance, Section \@ref(data). R Markdown automatically makes the sections lower case and adds a dash to spaces to generate labels, for instance, Section \@ref(first-discussion-point). 
+The quality of a country's educational system and its economic status has an evident correlation although the education levels vary by country. In 2021, United States was ranked first with the best educational system. However, there is a gap between students from minority backgrounds, immigrant origins, and economically disadvantaged families and more privileged families. Our aim is to help further understand United States'  
+education system and the differences between social classes and for potential adjustments to United States' educational system. 
+
+A survey using a proportional sampling technique was created and conducted to assess American society and collect sociological and attitudinal trend data.  Due to COVID-19, the survey is conducted online, using a web survey mode instead of an in-person interview. Also, we use a mail push-to-web respondent methodology and in order to reduce response bias, we use last birthday method as the respondent selection. From the responses to our survey, it reveals that there is generally a negative attitude towards the American education systems. Also, most respondents have at least had education up to high school and more than half of the respondents are from a family with an average income or above average income.
+
+By looking at the responses, it is possible that there is a change in opinions, attitudes, and behaviours due to the change in survey methodology and/or an actual change in concept over time. Besides that, there was a lower response rate compared to previous studies done in-person, which could also have an effect on the results of the survey. 
+
+# Survey Methodology
+The survey audience is for adults 18 or older who live in noninstitutional housing in the United States. Our method of invitation to our survey is through mailing material with an attached web link that invites people to participate on web. In each household, there will be only one respondent selected using the last birthday method. Since our survey method only captures one response from each household, it is not representative of the whole household. 
+
+There are three possible limitations and errors: Measurement error, non-response error, and sampling error. As for the measurement error, the changes in how the survey is conducted can impact the responses. Since the survey method changed from offline to online, we added an additional "Don't know" response category for only factual questions. There could also a non-response error. The response rates decreased after we started conducting the survey online. 
+
+@citeR
 
 
+# Results and Discussion
 
-# Data
+According to Figure 4, our survey reveals that out of the respondents that answered the question, the most number of respondents believe that the United States does not spend enough money on education. This is ironic since United States was ranked first for the best educational system in 2021. It is also noticeable that although many of the respondents have at least finished high school or four years of college. Most respondents also answered that they think their family's income as growing up was average. 
 
-Our data is of penguins (Figure \@ref(fig:bills)).
+```{r fig.cap="Figure 1: Distribution of the survey respondent’s age (in years)", echo = FALSE, message=FALSE, warning=FALSE}
 
-```{r bills, fig.cap="Bills of penguins", echo = FALSE}
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+gss_data <- read_csv("/Users/ayoonkim/Desktop/gss_analysis/outputs/data/prepared_gss.csv")
+
+age_graph <- gss_data %>%
+  ggplot(aes(x = age, fill = age)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Age")
+
+age_graph + theme(legend.position="none", axis.text.x = element_text(angle=50, vjust = 1, hjust=1))
+
+
 ```
 
-Talk more about it.
+```{r fig.cap="Figure 2: Distribution of the survey respondent’s gender", echo = FALSE, message=FALSE, warning=FALSE}
 
-Also bills and their average (Figure \@ref(fig:billssssss)). (Notice how you can change the height and width so they don't take the whole page?)
+gender_graph <- gss_data %>%
+  ggplot(aes(x = gender, fill = gender)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Gender")
 
-```{r billssssss, fig.cap="More bills of penguins", echo = FALSE, fig.width=8, fig.height=4}
+gender_graph + theme(legend.position="none", axis.text.x = element_text(angle=50, vjust = 1, hjust=1))
 
-# This needs to be about the random data tha tI sasmpled?
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = FALSE) +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
 ```
 
-Talk way more about it. 
+```{r fig.cap="Figure 3: Distribution of the survey respondent’s education level", echo = FALSE, message=FALSE, warning=FALSE}
 
+education_graph <- gss_data %>%
+  ggplot(aes(x = educ, fill = educ)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Education Level") +
+  theme(legend.position="none") +
+  xlab("Education level")
 
+education_graph + 
+  coord_flip() +
+  scale_x_discrete(limits = c('1st Grade', '2nd Grade', '3rd Grade', '4th Grade', '5th Grade', '6th Grade', '7th Grade', '8th Grade', '9th Grade', '10th Grade', '11th Grade', '12th Grade', '1 Year of College', '2 Years of College', '3 Years of College', '4 Years of College', '5 Years of College', '6 Years of College', '7 Years of College', '8 Years of College','No formal schooling'))
 
-# Model
+```
 
-\begin{equation}
-Pr(\theta | y) = \frac{Pr(y | \theta) Pr(\theta)}{Pr(y)}  (\#eq:bayes)
-\end{equation}
+```{r fig.cap="Figure 4: Distribution of the survey respondent’s perspective on the spending on the nation's education system", echo = FALSE, message=FALSE, warning=FALSE}
 
-Equation \@ref(eq:bayes) seems useful, eh?
+spending_edu_system_graph <- gss_data %>%
+  ggplot(aes(x = nateduc, fill = nateduc)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Perspective on the Spending on the Nation's Education System ") 
 
-Here's a dumb example of how to use some references: In paper we run our analysis in `R` [@citeR]. We also use the `tidyverse` which was written by @thereferencecanbewhatever If we were interested in baseball data then @citeLahman could be useful. 
+spending_edu_system_graph + theme(legend.position="none", plot.title=element_text(size=10), axis.title.x=element_blank(), axis.title.y=element_blank())
 
-We can use maths by including latex between dollar signs, for instance $\theta$.
+```
 
+```{r fig.cap="Figure 5: Distribution of the survey respondent’s degree", echo = FALSE, message=FALSE, warning=FALSE}
 
-# Results
+degree_graph <- gss_data %>%
+  ggplot(aes(x = degree, fill = degree)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Degree")
 
-# Discussion
+degree_graph + theme(legend.position="none", axis.text.x = element_text(angle=30, vjust = 1, hjust=1))
 
-## First discussion point
+```
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+```{r fig.cap="Figure 6: Distribution of the survey respondent’s family income at 16", echo = FALSE, message=FALSE, warning=FALSE}
 
-## Second discussion point
+income_16_graph <- gss_data %>%
+  ggplot(aes(x = incom16, fill = incom16)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Family Income at 16 Years Old")
 
-## Third discussion point
+income_16_graph + 
+  coord_flip() +
+  theme(legend.position="none", axis.title.y=element_blank()) +
+  scale_x_discrete(limits = c('Far below average', 'Below average', 'Average', 'Above average', 'Far above average'))
 
-## Weaknesses and next steps
+```
 
-Weaknesses and next steps should also be included.
+```{r fig.cap="Figure 7: Distribution of the survey respondent’s total family income last year before taxes", echo = FALSE, message=FALSE, warning=FALSE}
+
+income_graph <- gss_data %>%
+  ggplot(aes(x = income, fill = income)) +
+  geom_bar() +
+  ggtitle("Survey Respondent's Family Income Last Year before Taxes ")
+
+income_graph + 
+  coord_flip() +
+  theme(legend.position="none", axis.title.y=element_blank()) +
+  scale_x_discrete(limits = c('Under $1,000', '$1,000 to $2,999', '$3,000 to $3,999', '$4,000 to $4,999', '$5,000 to $5,999', '$6,000 to $6,999', '$7,000 to $7,999', '$8,000 to $9,999', '$10,000 to $14,999', '$15,000 to $19,999', '$20,000 to $24,999', '$25,000 or more', 'Refused'))
+
+```
+
 
 \newpage
+
+## Weaknesses and Next Steps
+
+For any survey methodology, there is always weaknesses and limitations. In our case, we decided to survey one respondent from each household which does not obtain the entire household's opinion. Therefore, the response does not represent the entire household and could also lead to uncertainty. Not only that, our method of invitation via mailing could also lead to result in more responses from the older generations compared to younger generations since they are more familiar with mails. 
+
 
 \appendix
 
 # Appendix {-}
 
 
-# Additional details
+# Supplementary Survey
+
+Our supplementary survey is available here: https://forms.gle/fDNdMa8TxcN6TNfr6
+
+## Preamble
+
+The purpose of this survey is to further investigate the relationship between education and income. We are interested in more detailed in your background, living environment, and education you have received. 
+
+By proceeding with the survey, you understand that we will use your responses to better understand education and income responses in the GSS. The survey is voluntary, and if you decide to participate you can skip questions and withdraw at any time. 
+
+## Questions
+
+1. What is your age?
+10-19 Years, 20-29 Years, 30-39 Years, 40-49 Years, 50-59 Years, 60-69 Years, 70-79 Years, 80 Years Old or Over
+
+2. What is your gender?
+Male, Female, Transgender, None of the above
+
+3. What is the highest level of education you have completed?
+Elementary, Middle school, High school diploma, College diploma, Bachelor's degree, Master's degree, PhD, No formal schooling, Other, Prefer not to answer
+
+4. What is the highest level of education your guardian completed?
+Elementary, Middle school, High school diploma, College diploma, Bachelor's degree, Master's degree, PhD, No formal schooling, Other, Prefer not to answer
+
+5. Would you say your family income was: far below average, below average, average, above average, or far above average, while you were under their financial aid?
+Far below average, Below average, Average, Above average, Far above average
+
+6. Would you say your family income was: far below average, below average, average, above average, or far above average, while you were under their financial aid?
+Far below average, Below average, Average, Above average, Far above average
+
+7. If you have a job what is your average income? Would you say it is: far below average, below average, average, above average, or far above average?
+Far below average, Below average, Average, Above average, Far above average, Do not have a job
+
+8. Based on your experience, do you think a family's income has an affect on education?
+Yes, No, Prefer not to answer
+
+
+## End Page
+
+Thank you very much for participating in our survey. If you have any questions, you can email ayoon.kim@mail.utoronto.ca
 
 
 \newpage
 
 
 # References
+Education rankings by country 2022. (n.d.). Retrieved March 21, 2022, from https://worldpopulationreview.com/country-rankings/education-rankings-by-country 
+
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical
+Computing, Vienna, Austria. URL: https://www.R-project.org/.
+
+Smith, Tom W., Davern, Michael, Freese, Jeremy, and Morgan, Stephen L., General Social Surveys, 1972-2018 [machine-readable data file] /Principal Investigator, Smith, Tom W.; Co-Principal Investigators, Michael Davern, Jeremy Freese and Stephen L. Morgan; Sponsored by National Science Foundation. --NORC ed.-- Chicago: NORC, 2019.
+1 data file (64,814 logical records) + 1 codebook (3,758 pp.). -- (National Data Program for the Social Sciences, no. 25).
+
+2019. “TinyTeX: A Lightweight, Cross-Platform, and Easy-to-Maintain LaTeX Distribution Based on TeX Live.” TUGboat, no. 1: 30–32. https://tug.org/TUGboat/Contents/contents40-1.html.
 
 
