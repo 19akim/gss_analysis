@@ -27,7 +27,7 @@ education system and the differences between social classes and for potential ad
 A survey using a proportional sampling technique was created and conducted to assess American society and collect sociological and attitudinal trend data.  Due to COVID-19, the survey is conducted online, using a web survey mode instead of an in-person interview. Also, we use a mail push-to-web respondent methodology and in order to reduce response bias, we use last birthday method as the respondent selection. From the responses to our survey, it reveals that there is generally a negative attitude towards the American education systems. Also, most respondents have at least had education up to high school and more than half of the respondents are from a family with an average income or above average income.
 
 By looking at the responses, it is possible that there is a change in opinions, attitudes, and behaviours due to the change in survey methodology and/or an actual change in concept over time. Besides that, there was a lower response rate compared to previous studies done in-person, which could also have an effect on the results of the survey. 
-
+ 
 # Survey Methodology
 The survey audience is for adults 18 or older who live in noninstitutional housing in the United States. Our method of invitation to our survey is through mailing material with an attached web link that invites people to participate on web. In each household, there will be only one respondent selected using the last birthday method. Since our survey method only captures one response from each household, it is not representative of the whole household. 
 

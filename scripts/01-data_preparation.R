@@ -15,7 +15,7 @@ library(tidyverse)
 raw_data <- haven::read_dta("inputs/data/2021_stata/gss2021.dta")
 
 names(raw_data)
-
+ 
 reduced_data <- 
   raw_data %>% 
   select(age,
