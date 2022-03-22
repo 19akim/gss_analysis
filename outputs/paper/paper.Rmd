@@ -16,7 +16,6 @@ bibliography: references.bib
 library(tidyverse)
 library(tinytex)
 
-
 ```
 
 # Introduction

@@ -47,7 +47,7 @@ reduced_data <-
     age >= 70 & age <= 79 ~ "70-79 Years old",
     age >= 80 ~ "80 Years old or over"
   ))
-
+  
 
 #### Recode gender ####
 # The question for SEXMOW1 is:
