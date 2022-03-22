@@ -41,13 +41,14 @@ reduced_data <-
     age >= 10 & age <= 19 ~ "10-19 Years old",
     age >= 20 & age <= 29 ~ "20-29 Years old",
     age >= 30 & age <= 39 ~ "30-39 Years old",
-    age == 40 & age <= 49 ~ "40-49 Years old",
-    age == 50 & age <= 59 ~ "50-59 Years old",
-    age == 60 & age <= 69 ~ "60-69 Years old",
-    age == 70 & age <= 79 ~ "70-79 Years old",
+    age >= 40 & age <= 49 ~ "40-49 Years old",
+    age >= 50 & age <= 59 ~ "50-59 Years old",
+    age >= 60 & age <= 69 ~ "60-69 Years old",
+    age >= 70 & age <= 79 ~ "70-79 Years old",
     age >= 80 ~ "80 Years old or over"
   ))
-    
+
+
 #### Recode gender ####
 # The question for SEXMOW1 is:
 # "Do you describe yourself as male, female, or transgender?"
@@ -142,12 +143,12 @@ reduced_data <-
   mutate(income = case_when(
     income == 1 ~ "Under $1,000",
     income == 2 ~ "$1,000 to $2,999",
-    income == 3 ~ "$3000 to $3,999",
-    income == 4 ~ "$4000 to $4,999",
-    income == 5 ~ "$5000 to $5,999",
-    income == 6 ~ "$6000 to $6,999",
-    income == 7 ~ "$7000 to $7,999",
-    income == 8 ~ "$8000 to $9,999",
+    income == 3 ~ "$3,000 to $3,999",
+    income == 4 ~ "$4,000 to $4,999",
+    income == 5 ~ "$5,000 to $5,999",
+    income == 6 ~ "$6,000 to $6,999",
+    income == 7 ~ "$7,000 to $7,999",
+    income == 8 ~ "$8,000 to $9,999",
     income == 9 ~ "$10,000 to $14,999",
     income == 10 ~ "$15,000 to $19,999",
     income == 11 ~ "$20,000 to $24,999",
